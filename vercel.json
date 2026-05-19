@@ -2,10 +2,12 @@
     "version": 2,
     "framework": null,
     "functions": {
-        "vercel-entry/index.php": {
+        "api/index.php": {
             "runtime": "vercel-php@0.6.2"
         }
     },
+    "cleanUrls": true,
+    "trailingSlash": false,
     "routes": [
         {
             "src": "/build/(.*)",
@@ -17,7 +19,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "/vercel-entry/index.php"
+            "dest": "/api/index.php"
         }
     ],
     "env": {
