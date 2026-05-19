@@ -6,6 +6,8 @@
             "runtime": "vercel-php@0.6.2"
         }
     },
+    "cleanUrls": true,
+    "trailingSlash": false,
     "routes": [
         {
             "src": "/build/(.*)",
@@ -14,10 +16,6 @@
         {
             "src": "/(css|js|images|favicon.ico)/(.*)",
             "dest": "/public/$1/$2"
-        },
-        {
-            "src": "/api/(.*)",
-            "dest": "/api/index.php"
         },
         {
             "src": "/(.*)",
