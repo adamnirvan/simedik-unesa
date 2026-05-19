@@ -9,3 +9,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('/webhook/xendit', [PatientController::class, 'xenditCallback']);
+
+Route::get('/test', function () {
+    return response()->json(['status' => 'ok', 'message' => 'API route works']);
+});
