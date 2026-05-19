@@ -11,7 +11,7 @@ class AdminController extends Controller
     public function index()
     {
         $appointments = Appointment::with('patient', 'poli')
-            ->where('status', 'menunggu_jadwal')
+            ->where('status', 'menunggu')
             ->orderBy('created_at', 'asc')
             ->get();
 

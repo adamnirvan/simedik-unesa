@@ -7,46 +7,36 @@
 
         <title>SIMEDIK - Login</title>
 
-        <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <!-- Login Container -->
-        <div class="min-h-screen bg-slate-50 flex items-center justify-center px-4 sm:px-6 lg:px-8">
-            <!-- Main Card -->
+    <body class="font-sans antialiased bg-[#FBFBFD]">
+        <div class="min-h-screen bg-[#FBFBFD] flex items-center justify-center px-4 sm:px-6 lg:px-8">
             <div class="w-full max-w-md">
-                <!-- Logo & Branding -->
                 <div class="text-center mb-8">
-                    <div class="flex items-center justify-center mb-4">
-                        <div class="w-14 h-14 bg-emerald-500 rounded-3xl flex items-center justify-center shadow-lg">
-                            <span class="text-white font-bold text-2xl">S</span>
-                        </div>
+                    <div class="flex items-center justify-center">
+                        <img src="{{ asset('images/simedik_logo2.png') }}" alt="SIMEDIK UNESA" class="h-70 w-auto object-contain max-w-xs">
                     </div>
-                    <h1 class="text-3xl font-bold text-emerald-600 mb-2">SIMEDIK</h1>
-                    <p class="text-slate-600 text-base">Masuk ke portal Klinik UNESA</p>
                 </div>
 
-                <!-- Form Card -->
-                <div class="bg-white rounded-3xl shadow-xl p-8 sm:p-10 border border-slate-100">
-                    <!-- Session Status -->
+                <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100/50 backdrop-blur-sm">
+                    
+                    <h1 class="text-2xl sm:text-3xl font-bold text-simedik-dark tracking-tight mb-8 text-center">Masuk ke Akun</h1>
+
                     @if ($errors->any())
-                        <div class="mb-6 p-4 rounded-2xl bg-red-50 border border-red-100">
-                            <p class="text-red-600 text-sm font-medium">Login gagal. Periksa kembali email dan password Anda.</p>
+                        <div class="mb-6 p-4 rounded-2xl bg-red-50/50 border border-red-100/70 backdrop-blur-sm">
+                            <p class="text-red-700 text-sm font-medium">Login gagal. Periksa kembali email dan password Anda.</p>
                         </div>
                     @endif
 
-                    <!-- Form -->
-                    <form method="POST" action="{{ route('login') }}" class="space-y-6">
+                    <form method="POST" action="{{ route('login') }}" class="space-y-5">
                         @csrf
 
-                        <!-- Email Address -->
                         <div>
-                            <label for="email" class="block text-slate-900 font-semibold text-sm mb-3">
-                                Email Anda
+                            <label for="email" class="block text-simedik-dark font-semibold text-sm mb-2.5 tracking-tight">
+                                Email
                             </label>
                             <input
                                 type="email"
@@ -56,17 +46,16 @@
                                 required
                                 autofocus
                                 autocomplete="username"
-                                class="w-full px-4 py-3 rounded-2xl border-2 border-slate-200 bg-slate-50 text-slate-900 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-10 transition-all duration-200"
-                                placeholder="nama@email.com"
+                                class="w-full px-4 py-3.5 rounded-2xl border border-slate-200/60 bg-slate-50/40 text-simedik-dark placeholder-slate-400 focus:outline-none focus:border-simedik-primary focus:bg-white focus:ring-1 focus:ring-simedik-primary/30 transition-all duration-300 ease-out"
+                                placeholder="nama@example.com"
                             />
                             @error('email')
-                                <p class="text-red-500 text-sm mt-2 font-medium">{{ $message }}</p>
+                                <p class="text-red-600 text-sm mt-1.5 font-medium">{{ $message }}</p>
                             @enderror
                         </div>
 
-                        <!-- Password -->
                         <div>
-                            <label for="password" class="block text-slate-900 font-semibold text-sm mb-3">
+                            <label for="password" class="block text-simedik-dark font-semibold text-sm mb-2.5 tracking-tight">
                                 Password
                             </label>
                             <input
@@ -75,66 +64,61 @@
                                 name="password"
                                 required
                                 autocomplete="current-password"
-                                class="w-full px-4 py-3 rounded-2xl border-2 border-slate-200 bg-slate-50 text-slate-900 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-10 transition-all duration-200"
+                                class="w-full px-4 py-3.5 rounded-2xl border border-slate-200/60 bg-slate-50/40 text-simedik-dark placeholder-slate-400 focus:outline-none focus:border-simedik-primary focus:bg-white focus:ring-1 focus:ring-simedik-primary/30 transition-all duration-300 ease-out"
                                 placeholder="••••••••"
                             />
                             @error('password')
-                                <p class="text-red-500 text-sm mt-2 font-medium">{{ $message }}</p>
+                                <p class="text-red-600 text-sm mt-1.5 font-medium">{{ $message }}</p>
                             @enderror
                         </div>
 
-                        <!-- Remember Me -->
-                        <div class="flex items-center">
+                        <div class="flex items-center pt-2">
                             <input
                                 type="checkbox"
                                 id="remember"
                                 name="remember"
-                                class="w-5 h-5 rounded-lg border-2 border-slate-300 text-emerald-500 focus:ring-emerald-500 focus:ring-offset-0 cursor-pointer accent-emerald-500"
+                                class="w-5 h-5 rounded-lg border border-slate-300 text-simedik-primary focus:ring-1 focus:ring-simedik-primary cursor-pointer transition-colors duration-200"
                             />
-                            <label for="remember" class="ms-3 text-slate-700 text-sm cursor-pointer">
-                                Ingat saya
+                            <label for="remember" class="ms-3 text-slate-600 text-sm font-medium cursor-pointer">
+                                Ingat saya di perangkat ini
                             </label>
                         </div>
 
-                        <!-- Submit Button -->
                         <button
                             type="submit"
-                            class="w-full mt-8 bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-2xl transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                            class="w-full mt-7 bg-simedik-primary text-white font-semibold tracking-wide rounded-2xl px-6 py-3.5 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:brightness-105 active:scale-95"
                         >
                             Masuk
                         </button>
                     </form>
 
-                    <!-- Divider -->
-                    <div class="my-8 relative">
+                    <div class="my-7 relative">
                         <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-slate-200"></div>
+                            <div class="w-full border-t border-slate-200/50"></div>
                         </div>
                         <div class="relative flex justify-center text-sm">
-                            <span class="px-3 bg-white text-slate-600">atau</span>
+                            <span class="px-3 bg-white text-slate-500 font-medium text-xs tracking-wide">atau</span>
                         </div>
                     </div>
 
-                    <!-- Links -->
                     <div class="space-y-3">
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="w-full block text-center py-3 px-4 rounded-2xl border-2 border-slate-200 text-slate-900 font-semibold hover:bg-slate-50 transition-all duration-200">
+                            <a href="{{ route('register') }}" class="w-full block text-center py-3.5 px-4 rounded-2xl border border-slate-200/60 text-simedik-dark font-semibold bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md hover:border-simedik-primary/30">
                                 Buat Akun Baru
                             </a>
                         @endif
 
                         @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="block text-center text-emerald-600 hover:text-emerald-700 font-semibold text-sm py-2 transition-colors duration-200">
-                                Lupa Password?
+                            <a href="{{ route('password.request') }}" class="block text-center text-slate-600 hover:text-simedik-primary font-medium text-sm py-2 transition-colors duration-300 ease-out">
+                                Lupa password?
                             </a>
                         @endif
                     </div>
                 </div>
 
-                <!-- Footer Info -->
-                <div class="mt-8 text-center">
-                    <p class="text-slate-600 text-xs">
-                        Klinik UNESA © 2025 | Sistem Manajemen Medis Digital
+                <div class="mt-10 text-center">
+                    <p class="text-slate-400 text-xs font-medium tracking-wide">
+                        Klinik UNESA © 2026 | Sistem Manajemen Medis Digital
                     </p>
                 </div>
             </div>

@@ -11,9 +11,18 @@ export default {
 
     theme: {
         extend: {
+            // MENGUBAH FONT UTAMA MENJADI POPPINS
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Poppins', ...defaultTheme.fontFamily.sans],
             },
+            // WARNA KUSTOM SIMEDIK
+            colors: {
+                simedik: {
+                    dark: '#1E1E1E',    // Untuk teks dan border tebal
+                    primary: '#56DFCF', // Untuk tombol utama
+                    light: '#B6FBE5',   // Untuk aksen dan hover
+                }
+            }
         },
     },
 
