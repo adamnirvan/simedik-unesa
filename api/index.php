@@ -1,23 +1,31 @@
-<?php
-
-use Illuminate\Http\Request;
-
-define('LARAVEL_START', microtime(true));
-
-// 1. Vercel filesystem itu Read-Only. Kita buat & alihkan folder storage ke /tmp
-$storagePath = '/tmp/storage';
-foreach (['/framework/views', '/framework/cache', '/framework/sessions', '/logs'] as $dir) {
-    if (!is_dir($storagePath . $dir)) {
-        mkdir($storagePath . $dir, 0755, true);
+{
+    "version": 2,
+    "framework": null,
+    "functions": {
+        "api/index.php": {
+            "runtime": "vercel-php@0.6.2"
+        }
+    },
+    "routes": [
+        {
+            "src": "/build/(.*)",
+            "dest": "/public/build/$1"
+        },
+        {
+            "src": "/(css|js|images|favicon.ico)/(.*)",
+            "dest": "/public/$1/$2"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
+        }
+    ],
+    "env": {
+        "APP_CONFIG_CACHE": "/tmp/config.php",
+        "APP_EVENTS_CACHE": "/tmp/events.php",
+        "APP_PACKAGES_CACHE": "/tmp/packages.php",
+        "APP_ROUTES_CACHE": "/tmp/routes.php",
+        "APP_SERVICES_CACHE": "/tmp/services.php",
+        "VIEW_COMPILED_PATH": "/tmp"
     }
 }
-
-// 2. Muat Composer Autoloader
-require __DIR__ . '/../vendor/autoload.php';
-
-// 3. Boot Laravel & paksa pakai storage baru di /tmp tadi
-$app = require_once __DIR__ . '/../bootstrap/app.php';
-$app->useStoragePath($storagePath);
-
-// 4. Jalankan aplikasi untuk menangani request browser
-$app->handleRequest(Request::capture());
